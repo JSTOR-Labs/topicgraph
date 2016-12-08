@@ -1,0 +1,7 @@
+<ul class="menu">
+  <li [ngClass]="{'active': (path|async) === '/' }"><a [routerLink]="['/']">Home</a></li>
+  <li [ngClass]="{'active': (path|async) === '/topicgraph' }"><a [routerLink]="['/topicgraph']">Topicgraph</a></li>
+  <li [ngClass]="{'active': (path|async) === '/about' }"><a [routerLink]="['/about']">About</a></li>
+  <li [ngClass]="{'active': (path|async) === '/login' }"><a [routerLink]="(session|async)?.user === null ? ['/login'] : ['/logout']">{{(session|async)?.user === null ? 'Login' : 'Logout'}}</a></li>
+</ul>
+<br/>

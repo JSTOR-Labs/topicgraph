@@ -1,0 +1,27 @@
+<topicgraphs-header></topicgraphs-header>
+<div id="main">
+<div id="head-text">
+    <div class="row">
+        <div class="col-xs-10 col-xs-offset-1">
+            <p>Make a topic graph of a document you already have
+            </p>
+
+        </div>
+        <img src="assets/Upload Step 1.png" style="margin-right: 2.5em">
+            <img src="assets/Upload Step 2.png" style="margin-right: 2.5em">
+            <img src="assets/Upload Step 3.png">
+    </div>
+</div>
+
+<div class="container pdfSubmit">
+
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <textarea placeholder="Drag PDF here" fileDrop [ngClass]="{'nv-file-over': fileIsOverDropZone}"
+                (fileOver)="fileOverBase($event)" (drop)="fileDrop($event)" rows="10" cols="50"></textarea>
+        </div>
+    </div>
+</div>
+</div>
+<topicgraphs-footer></topicgraphs-footer>
+<pdf-submit-modal #submitModal (onHide)="doSubmit($event)"></pdf-submit-modal>

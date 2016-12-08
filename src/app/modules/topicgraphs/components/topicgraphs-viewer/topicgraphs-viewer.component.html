@@ -1,0 +1,153 @@
+<topicgraphs-header></topicgraphs-header>
+<div id="main">
+<div class="separator"></div>
+<div class="container">
+	<div id="header-overlay" *ngIf="isScrolled" class="row">
+		<div class="col-sm-6">
+			<div id="mobile-main-menu" (click)="toggle()" style="display: inline">
+				<i class="fa fa-navicon fa-2x" style="margin-top: 18px; margin-left: -5px; color: #333;"></i>
+		  	</div>
+			<h3 style="margin-top: 16px; margin-left: 10px; display: inline" >{{(monograph | async)?.title}}</h3>
+		</div>
+		<div class="col-sm-6">
+			<div id="header-buttons" class="row">
+				<!--<div class="col-md-12 col-lg-5"> removing columns for now to give us every bit of space -->
+				<a *ngIf="(monograph | async)?.submittedBy === 'jstorlabs'" class="downloadButton" [href]="(monograph | async)?.pdf" analytics-on="click" analytics-event="download" [download]="(monograph | async)?.id+'.pdf'">Download Book&nbsp;&nbsp;<i class="fa fa-download"></i></a>&nbsp;
+
+				<!--</div>
+				<div class="col-md-12 col-lg-7">-->
+						<span><input style="height:12px;margin-left: 4em;" type="checkbox" [ngModel]="showHighlights" (ngModelChange)="toggleHighlighting($event)" data-md-icheck/>Highlighting &nbsp;</span><!--</div>-->
+			</div>
+		</div>
+
+	</div>
+	
+	<div class="row main">
+
+		<div class="{{pdfViewerSize === 'small' ? 'col-xs-7' : pdfViewerSize === 'medium' ? 'col-xs-6' : 'col-xs-5'}}"><!--left side">-->
+			<div  *ngIf="!this.enlarged">
+				<div class="row">
+				 <div class="col-sm-12">
+					<a [routerLink]="['../..']"><i class="fa-caret-left fa" aria-hidden="true"></i> Back</a><br><br>
+				</div>
+			 </div>
+				<div class="row" id="biblio">
+					<div class="col-sm-2" id="thumbnail">
+						<img style="box-shadow: 4px 5px 9px 0px rgba(191,192,197,0.50);" width="100px;" src="{{(monograph | async)?.cover_thumbnail_lg}}" />
+					</div>
+					<div class="col-sm-10" id="title-container">
+						<h3 style="margin-top: 0px">{{(monograph | async)?.title}}<span *ngIf="(monograph | async)?.subtitle">:&nbsp;</span>{{(monograph | async)?.subtitle}}</h3>
+					<div class="author">{{(monograph | async)?.author.join(', ')}}</div>
+					<!--<div class="author">{{(monograph | async)?.author-string</div>-->
+
+					<div class="citation" [hidden]="!showCitation">
+						<div class="pubYear">Copyright Date: {{(monograph | async)?.pubYear}}</div>
+						<div>Published by: <span class="publisher">{{(monograph | async)?.publisher}}</span></div>
+						<!--<div class="numPages">{{(monograph | async)?.numPages}} pages</div>-->
+						<div *ngIf="(monograph | async)?.stableUrl" class="pubURL">Stable URL: <a href="{{(monograph | async)?.stableUrl}}" target="_blank">
+							{{(monograph | async)?.stableUrl}}</a><br><br></div>
+						<p style="font-weight: bold; margin-bottom: 0px;">Book Description:</p><div class="pubSummary" [innerHTML]="(monograph | async)?.summary"></div>
+					</div>
+
+					<p (click)="showCitation = !showCitation" id="toggle"  *ngIf="(monograph | async)?.pubYear ">
+						<span *ngIf="!showCitation"><img src="assets/Icon - More.svg"/> More</span>
+						<span *ngIf="showCitation"><img src="assets/Icon - Less.svg"/> Less</span>
+					</p>
+					</div>
+
+				</div>
+				<!-- tooltip force tester <a href="#" [tooltip]="'Foo'"
+				   #tooltip="bs-tooltip">Check me out!</a>
+				   <button class="btn btn-primary" (click)="tooltip.show()">Show tooltip</button>
+				   <button class="btn btn-danger" (click)="tooltip.hide()">Hide tooltip</button>-->
+				<tabset class="row">
+					<tab [disabled]="false">
+						<span *tabHeading>
+							Topic Graph <a href="#" [tooltipHtml]="topicGraphTooltip">
+								<img class="topic-info" src="assets/Icon - Info.svg">
+							</a>
+						</span>
+						<div class="row" id="topic-map">
+
+							<div id="vis-container">
+								<topic-charts *ngIf="(monograph | async)?.visdata" [visdata]="(monograph | async)?.visdata"></topic-charts>
+							</div>
+						</div>
+					</tab>
+					<tab title="TOC Tab" [disabled]="false"  *ngIf="(monograph | async)?.toc.length > 3">
+						<span *tabHeading>
+							Table of Contents
+						</span>
+						<div class="toc" *ngIf="(monograph | async)?.toc">
+							<p *ngFor="let tocElem of (monograph | async)?.toc" (click)="gotoPage(tocElem.fpage)">
+								<span *ngIf="tocElem.tl" class="tocElemType">{{tocElem.tl.join(' ')}}</span>
+								<span *ngIf="tocElem.title" class="tocElemTitle">{{tocElem.title}}</span>
+								<span *ngIf="tocElem.subtitle" class="tocElemSubtitle">{{tocElem.subtitle}}</span>
+								<span *ngIf="tocElem.page_range" class="tocPageRange">(pp. {{tocElem.page_range}})</span>
+							</p>
+						</div>
+					</tab>
+
+				</tabset>
+			</div>
+		</div>
+
+		<div class="{{pdfViewerSize === 'small' ? 'col-xs-5' : pdfViewerSize === 'medium' ? 'col-xs-6' : 'col-xs-7'}}"><!--right side">-->
+			<div id="pdf-reader">
+				<div id="pdf-buttons" class="row">
+					<!--<div class="col-md-12 col-lg-5"> removing columns for now to give us every bit of space -->
+						<a *ngIf="(monograph | async)?.submittedBy === 'jstorlabs'" class="downloadButton" [href]="(monograph | async)?.pdf" [download]="(monograph | async)?.id+'.pdf'">Download Book&nbsp;&nbsp;<i class="fa fa-download"></i></a>&nbsp;
+						<!--<div class="btn-group" dropdown *ngIf="(monograph | async)?.pubYear ">
+							<button id="single-button" type="button" class="btn" dropdownToggle [disabled]="disabled">
+							  Cite <span class="caret"></span>
+							</button>
+							<ul dropdownMenu role="menu" aria-labelledby="single-button">
+							  <li role="menuitem"><a class="dropdown-item" (click)="$event.stopPropagation(); copyCitation('apa')">Copy APA to clipboard</a></li>
+							  <li role="menuitem"><a class="dropdown-item" (click)="$event.stopPropagation(); copyCitation('mla')">Copy MLA to clipboard</a></li>
+							  <li role="menuitem"><a class="dropdown-item" (click)="$event.stopPropagation(); copyCitation('chicago')">Copy Chicago to clipboard</a></li>
+							</ul>
+						</div>-->
+
+
+						<!--<button style="margin-top: -1px" (click)="togglePDFsize()">
+							<img src="assets/Icon - FullScreen.png" *ngIf="!this.enlarged" />
+							<img src="assets/Favicon.png" *ngIf="this.enlarged" />
+						</button>-->
+					<!--</div>
+					<div class="col-md-12 col-lg-7">-->
+							<span><input style="height:12px;margin-left: 4em;"type="checkbox" [ngModel]="showHighlights" (ngModelChange)="toggleHighlighting($event)" data-md-icheck/>Highlighting &nbsp;</span>
+
+					<!--</div>-->
+				</div>
+				<div class="pdfNavBar">
+					<div class="col-sm-2 col-md-1 text-left" id="left-pager"(click)="incrementPage(-1)"><img class='left-arrow' src='assets/Icon - Prev_Next.svg' id="left-pager"></div>
+					<div class="col-sm-8 col-md-10 text-left">
+						<span id="progress-label">page&nbsp;{{page}}&nbsp;of&nbsp;{{numPages}}</span><br>
+						<progressbar *ngIf="(monograph | async)" [value]="page === 1 ? 0 : page/numPages*100" type="success"></progressbar>
+					</div>
+					<div class="col-sm-2 col-md-1 text-right" id="right-pager" (click)="incrementPage(1)"><img class='right-arrow' src='assets/Icon - Prev_Next.svg' id="right-pager"></div>
+  				</div>
+			</div>
+			<div id="pdf-container">
+				<div class="loadingIndicator" *ngIf="pdfIsLoading == true">
+					<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i><span style="display: inline-block; margin-left:12px; font-size:36px;">Loading PDF...</span>
+				</div>
+				<pdf-viewer #pdfViewer *ngIf="(monograph | async)" [src]="(monograph | async)?.pdf"
+					style="display: block;"
+					[(page)]="page"
+					[original-size]="originalSize"
+					[show-all]="showAll"
+					[on-load-complete]="onLoadComplete"
+					[zoom]="zoom"
+				></pdf-viewer>
+				<span *ngFor="let span of highlights" 
+				      [ngClass]="span.class" 
+					  title="{{span.text}}"
+					  [ngStyle]="span.coords">
+				</span>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<topicgraphs-footer></topicgraphs-footer>

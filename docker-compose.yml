@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+
+  angular-seed-universal:
+    build:
+      context: .
+      dockerfile: ./.docker/angular-seed.production.dockerfile
+    command: npm run server:universal
+    container_name: angular-seed-universal
+    image: angular-seed-universal
+    networks:
+      - prod-network
+    ports:
+      - '8000:8000'
+
+networks:
+  prod-network:
+    driver: bridge

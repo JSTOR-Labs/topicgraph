@@ -1,0 +1,64 @@
+.d3-chart {
+  height: 90px;
+    cursor: hand;
+}
+
+.topic-chart {
+    /* margin-left: 150px;
+    display: inline-block;*/
+}
+
+.heading {
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+div.tooltip {	
+    position: absolute;			
+    text-align: left;
+    width: 130px;
+    height: 60px;
+    left: 100px;
+    /*position: relative;*/
+    background:white;
+    border: 1px solid #333;
+    pointer-events: none;			
+}
+
+
+.tooltipTitle {
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.tooltipPage {
+    font-weight: normal;
+    font-size: 0.8em;
+}
+
+.topicTitle {
+    padding-top: 25px;
+    font-weight: bold;
+    line-height: 1.1em;
+    padding-left: 17px;
+   /* width: 130px;
+    display: inline-block;*/
+}
+
+.topicTitle  .tooltip {
+    width: 400px;
+    height: 120px;
+    top: 0px!important;
+    left: 20px!important;
+}
+
+.topicTitle .tooltip  .tooltip-inner {
+    max-width: 370px;
+}
+
+.topicTitle .tooltip-arrow {
+    display: none;
+}
+.topic-info {
+    color: #546389;
+}

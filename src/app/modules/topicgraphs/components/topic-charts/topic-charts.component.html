@@ -1,0 +1,3 @@
+<div #chartContainer id="chartContainer">
+    <topic-chart *ngFor="let topic of topics | async; let i = index" [topic]="topic" [docData]="docData" [orientation]="orientation" [color]="colors[i % 10]"></topic-chart>
+</div>

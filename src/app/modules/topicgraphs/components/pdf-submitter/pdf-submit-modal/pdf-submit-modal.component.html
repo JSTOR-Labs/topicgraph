@@ -1,0 +1,16 @@
+<div bsModal #submitModal="bs-modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4>Please enter your email address to be notified when your document is ready.</h4><br/>
+        <input style="width:100%;" [(ngModel)]="notificationEmail" type="text" placeholder="Email address"><br/><br/>
+        <button type="button" class="cancel" id="cancel-submit" aria-label="Close" (click)="hide()">
+          <span aria-hidden="true">Cancel</span>
+        </button>
+        <button type="button" class="submit" id="submit-submit" aria-label="Submit" (click)="submit()">
+          <span aria-hidden="true">Submit</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

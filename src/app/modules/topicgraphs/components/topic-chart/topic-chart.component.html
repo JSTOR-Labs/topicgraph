@@ -1,0 +1,15 @@
+<div class="row" style="margin:0;padding:0;">
+    <div class= "topicTitle col-sm-2">
+
+        <span [innerHTML]="topic.topic.replace(' ','&lt;br&gt;')"></span>
+
+
+
+         <a href="#" [tooltipHtml]="relatedTopics | async" #tooltip="bs-tooltip"><img class="topic-info" src="assets/Icon - Info.svg"></a>
+        <!--for debug <button class="btn btn-primary" (click)="tooltip.show()">Show tooltip</button>-->
+
+
+    </div>
+    <div class="d3-chart topic-chart col-sm-10" style="margin:0;padding:0;" #chart data-sc="topic-graph-click"></div>
+</div>
+    

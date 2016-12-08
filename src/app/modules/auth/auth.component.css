@@ -1,0 +1,10 @@
+.login-error-message {
+    color: red;
+    margin: 6px
+}
+
+#loginForm {
+    padding: 18px;
+    border: 1px solid #aaa;
+    border-radius: 12px
+}

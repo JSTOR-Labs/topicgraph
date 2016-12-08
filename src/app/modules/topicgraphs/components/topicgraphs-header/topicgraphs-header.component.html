@@ -1,0 +1,24 @@
+<div id="top-menu">
+  <div class="title">
+    <h2 [routerLink]="['/']"><img src="assets/BETAlogo.svg"></h2>
+  </div>
+
+  <!--<div id="mobile-main-menu" (click)="toggle()">
+    <i class="fa fa-navicon fa-2x"></i>
+  </div>-->
+
+  <div class="logo">
+    <a href="https://jstor-labs.github.io/">
+      <!-- <img src="assets/images/logo.png" alt=""> -->
+    </a>
+  </div>
+
+  <div id="top-links">
+    <!--<input type="text" id="book-search" placeholder="Search book title" style="width: 250px; background-color: #dee9ee;">
+							<i class="fa fa-search" style="position: relative; right: 25px; color:#546d89"></i>-->
+    <button id="make-button" [routerLink]="['/submit']">Topic<b>graph</b> my document</button>
+    <a [routerLink]="['/about']" style="margin-left: 2.5em; ">ABOUT</a>
+    <!--<a [routerLink]="['/contact']">{{'CONTACT US' | translate}}</a>-->
+  </div>
+
+</div>

@@ -1,0 +1,41 @@
+#chartContainer {
+  margin-top: 50px;
+
+}
+
+.arrow:hover {
+  color: #000;
+}
+
+.heading {
+  font-weight: bold;
+  font-size: 1.4em;
+}
+
+div.topicChartsTooltip {
+    width: 350px;
+    height: 70px;
+    background:white;
+    color: black;
+    border: 1px solid #333;
+    pointer-events: none;			
+    position: absolute;
+    z-index: 20;
+}
+
+div.topicChartsTooltip p {
+    text-align: left;
+    margin: 6px;
+    line-height: 1.4em;
+}
+
+.topicChartsTooltipTitle {
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.topicChartsTooltipPage {
+    font-weight: normal;
+    font-size: 0.8em;
+    margin-top: 6px;
+}

@@ -1,0 +1,10 @@
+.fa {
+  font-family: FontAwesome; }
+
+.camera {
+  margin: 6px;
+  color: #ccc; }
+
+.camera:hover {
+  cursor: pointer;
+  color: #aaa; }

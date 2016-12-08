@@ -1,0 +1,51 @@
+<topicgraphs-header></topicgraphs-header>
+<div id="main">
+    <div id="head-text">
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1">
+                <p>A new research tool to help you explore scholarly books.
+                </p>
+
+            </div>
+            <img src="assets/Step_1.png" style="margin-right: 2.5em">
+                <img src="assets/Step_2.png" style="margin-right: 2.5em">
+                <img src="assets/Step_3.png">
+        </div>
+    </div>
+
+    <!--<div class="separator"></div>-->
+    <div class="container">
+    <h4 class="home-subheading">Browse open scholarly books</h4>
+
+        <!-- Split button -->
+    <div class="btn-group home-dropdown" dropdown>
+        <button id="split-button" type="button" class="btn">Choose a discipline</button>
+        <button type="button" class="btn dropdown-toggle-split" dropdownToggle>
+        <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" dropdownMenu role="menu" aria-labelledby="split-button">
+            <li role="menuitem" *ngFor="let rec of allMonographs | keys ">
+                <a class="dropdown-item {{rec.key}}" href="#{{rec.key}}" *ngIf="(rec.value | async)?.length">{{rec.key}}</a>
+            </li>
+        </ul>
+        <p>&nbsp;</p>
+    </div>
+        <div *ngFor="let rec of allMonographs | keys" class="row monograph-list">
+            <div *ngIf="(rec.value | async)?.length" class="col-sm-12">
+            <h4>{{rec.key}}<a href="#" name="{{rec.key}}"></a> <span class="book-count" *ngIf="rec">{{(rec.value | async)?.length }} books</span></h4>
+                
+                <owl-carousel class="owl-carousel"[options]="{}" (click)="onItemSelected($event.target.id)">
+                    <div class="owl-stage" *ngFor="let monograph of rec.value | async; let i=index">
+                        <div class="owl-item">
+                            <img id="{{monograph.id}}" src="{{monograph.cover_thumbnail_lg}}"/><br>
+                            <p class="carousel-title carousel-meta">{{monograph.title}}</p>
+                            <p class="carousel-author carousel-meta">{{monograph.author_string}}</p>
+                        </div>
+                    </div>
+                </owl-carousel>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<topicgraphs-footer></topicgraphs-footer>

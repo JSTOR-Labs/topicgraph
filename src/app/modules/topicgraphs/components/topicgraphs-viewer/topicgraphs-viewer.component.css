@@ -1,0 +1,323 @@
+:host {
+  display: block;
+  padding: 16px;
+}
+
+.back-link {
+  margin-bottom: 18px;
+}
+
+.tab-container {
+    margin-left: -1em;
+}
+
+#header-overlay {
+    background-color: #fff;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    height: 63px;
+    z-index: 100;
+    width: 100%;
+    margin: 0px;
+}
+
+#header-buttons {
+    margin-top: 14px;
+    margin-left: 5px;
+}
+
+/********** bibliographic stuff ************/
+
+
+.citation {
+    font-size: .9em;
+}
+
+.author {
+    font-size: .9em;
+}
+
+.publisher {
+  font-style: italic;
+}
+
+
+
+#toggle {
+    color: #546d89;
+    width: 100px;
+    cursor: pointer;
+    cursor: hand;
+}
+
+#thumbnail img{
+    box-shadow: 4px 5px 9px 0px rgba(191,192,197,0.50);
+}
+
+
+/*********** end bibliographic *************/
+
+
+
+
+
+
+
+
+
+
+/*********** visualization stuff ***********/
+
+#vis-container {
+   width:100%;
+    height:1000px;
+    overflow:scroll;
+}
+
+.nav-tabs {
+    border-bottom: 0px solid black!important;
+}
+
+.tab-component {
+    margin-left: 2em;
+}
+
+path {
+    cursor: hand;
+}
+/*********** end visualization *************/
+
+
+
+
+
+
+
+
+
+
+/*********** TOC stuff *********************/
+
+.toc {
+  margin-top: 24px;
+}
+
+.toc p {
+    cursor: pointer;
+    color: #546d89;
+    padding: 3px;
+    margin: 0px;
+}
+
+.toc p:hover {
+    background: #dee9ee;
+    color: #43576d;
+}
+
+.tocElemType {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.tocElemTitle {
+    font-weight: bold;
+}
+
+.tocElemSubtitle {
+    font-weight: bold;
+}
+
+.tocPageRange {
+    font-style: italic;
+}
+
+/************ end TOC **********************/
+
+
+
+
+
+/************pdf viewer stuff **************/
+
+.loadingIndicator {
+    position: absolute;
+    display: block;
+    color: black;
+    filter: alpha(opacity=75);
+    -moz-opacity: .75;
+    overflow: hidden;
+    -ms-filter: "alpha(opacity=75)";
+    opacity: .75;
+    left: 200px;
+    top: 400px;
+}
+
+.imageHighlight {
+    position: absolute;
+    display: block;
+    background-color: yellow;
+    filter: alpha(opacity=25);
+    -moz-opacity: .25;
+    overflow: hidden;
+    -ms-filter: "alpha(opacity=25)";
+    opacity: .25;
+}
+
+.imageHighlight1 {
+    position: absolute;
+    display: block;
+    background-color: #00BFDF;
+    filter: alpha(opacity=25);
+    -moz-opacity: .25;
+    overflow: hidden;
+    -ms-filter: "alpha(opacity=25)";
+    opacity: .25;
+}
+
+.imageHighlight2 {
+    position: absolute;
+    display: block;
+    background-color: #EA4E3C;
+    filter: alpha(opacity=25);
+    -moz-opacity: .25;
+    overflow: hidden;
+    -ms-filter: "alpha(opacity=25)";
+    opacity: .25;
+}
+
+.imageHighlight3 {
+    position: absolute;
+    display: block;
+    background-color: #99CC33;
+    filter: alpha(opacity=25);
+    -moz-opacity: .25;
+    overflow: hidden;
+    -ms-filter: "alpha(opacity=25)";
+    opacity: .25;
+}
+
+.imageHighlight4 {
+    position: absolute;
+    display: block;
+    background-color: #CCBF8B;
+    filter: alpha(opacity=25);
+    -moz-opacity: .25;
+    overflow: hidden;
+    -ms-filter: "alpha(opacity=25)";
+    opacity: .25;
+}
+
+.imageHighlight5 {
+    position: absolute;
+    display: block;
+    background-color: #364364;
+    filter: alpha(opacity=25);
+    -moz-opacity: .25;
+    overflow: hidden;
+    -ms-filter: "alpha(opacity=25)";
+    opacity: .25;
+}
+
+.imageHighlight6 {
+    position: absolute;
+    display: block;
+    background-color: #FFBA00;
+    filter: alpha(opacity=25);
+    -moz-opacity: .25;
+    overflow: hidden;
+    -ms-filter: "alpha(opacity=25)";
+    opacity: .25;
+}
+
+.imageHighlight7 {
+    position: absolute;
+    display: block;
+    background-color: #990000;
+    filter: alpha(opacity=25);
+    -moz-opacity: .25;
+    overflow: hidden;
+    -ms-filter: "alpha(opacity=25)";
+    opacity: .25;
+}
+
+.imageHighlight8 {
+    position: absolute;
+    display: block;
+    background-color: #546389;
+    filter: alpha(opacity=25);
+    -moz-opacity: .25;
+    overflow: hidden;
+    -ms-filter: "alpha(opacity=25)";
+    opacity: .25;
+}
+
+.imageHighlight9 {
+    position: absolute;
+    display: block;
+    background-color: #757679;
+    filter: alpha(opacity=25);
+    -moz-opacity: .25;
+    overflow: hidden;
+    -ms-filter: "alpha(opacity=25)";
+    opacity: .25;
+}
+
+.imageHighlight10 {
+    position: absolute;
+    display: block;
+    background-color: #333333;
+    filter: alpha(opacity=25);
+    -moz-opacity: .25;
+    overflow: hidden;
+    -ms-filter: "alpha(opacity=25)";
+    opacity: .25;
+}
+
+#pdf-container {
+    width:100%;
+    /*height:1000px;*/
+    overflow:scroll;
+    margin-top: 20px;
+}
+
+pdf-viewer, .ng2-pdf-viewer-container {
+    box-shadow: 3px 3px 12px 0px rgba(136,136,136,1);
+    margin: .5em;
+    margin-right: 1em;
+}
+
+#progress-label {
+    color: #333;
+}
+
+#pdf-buttons {
+    margin-bottom: 1em;
+    margin-left: 5px;
+}
+
+#left-pager {
+ padding-left: 0px;
+}
+
+#right-pager {
+ padding-right: 0px;
+}
+
+.downloadButton {
+  background-color: #364364;
+  border-style: none;
+  height: 33px;
+  color: #fff!important;
+  cursor: pointer;
+  margin-top: 1px;
+  display: inline-block;
+  padding: 6px 12px;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+a.downloadButton:hover {
+  color: white;
+}
