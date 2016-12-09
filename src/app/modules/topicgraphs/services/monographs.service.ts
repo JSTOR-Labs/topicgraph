@@ -58,28 +58,35 @@ export class MonographsService {
             })
             .switchMap(monographsState => this.select())
             .subscribe((results: any) => {
-                results.docs = monographsSearchResultsToDocs(this, results.docs);
                 this.store.dispatch({type: TOPICGRAPHS_ACTIONS.MONOGRAPHS_SEARCH_COMPLETE,
                                      payload: results});
             });
+
         this.store.dispatch({type: TOPICGRAPHS_ACTIONS.SEARCH_MONOGRAPHS});
     }
 
-    select() {
-        let url = API_BASE_URL + '/api/monographs/?format=json&submitted_by=jstorlabs&level=0&status=complete&fields=' + fields + '&limit=100';
+    select(docid?: string) {
+        let url = API_BASE_URL + '/api/monographs/?format=json&level=0&status=complete&fields=' + fields + '&limit=100';
+        if (docid) {
+            url += '&id=' + docid;
+        } else {
+            url += '&submitted_by=jstorlabs';
+        }
         // console.log('MonographsService.select', url);
         return this.authService.authenticate()
             .switchMap((session: any) =>
                 this._http.get(url,
                                { headers: new Headers({ 'Authorization': 'JWT ' + session.token })})
             )
-            .map((response: any) => response.json())
-            // .do(searchResults => console.log(searchResults))
+            .map((response: any) => {
+                let results = response.json();
+                results.docs = monographsSearchResultsToDocs(this, results.docs);
+                return results;
+            })
             ;
     }
 
     getVisualizationData(docid: string, segmentLevel?: number) {
-        console.log('getVisualizationData', docid, segmentLevel);
         let url = API_BASE_URL + '/api/monographs/?docid=' + docid + '&fields=level,source_docs,fpage,lpage,segment,summary,visdata&sort=segment%20asc&limit=512';
         if (segmentLevel) {
             url += '&level=(0 OR ' + segmentLevel + ')';

@@ -44,9 +44,7 @@ export class TopicgraphsBrowserComponent implements OnInit {
                 private monographsService: MonographsService) {}
 
     onItemSelected(docid: any) {
-        console.log('onItemSelected', docid);
         if (docid) this.router.navigate(['monograph', docid]);
-        // if (docid) this.router.navigate(['/monograph']);
     }
 
     ngOnInit() {

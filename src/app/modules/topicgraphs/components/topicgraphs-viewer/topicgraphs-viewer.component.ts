@@ -6,6 +6,7 @@ import 'rxjs/Rx';  // this imports the rxjs operators
 import { AppState, TOPICGRAPHS_ACTIONS } from '../../../../reducers/';
 import { MonographsService } from '../../services/monographs.service';
 import { Http } from '@angular/http';
+import { IMonograph } from '../../models/';
 //import {JSONP_PROVIDERS} from 'angular2/http'
 
 @Component({
@@ -63,9 +64,7 @@ export class TopicgraphsViewerComponent implements OnInit, OnDestroy, AfterViewC
                 public store: Store<AppState>,
                 private activatedRoute: ActivatedRoute,
                 private monographsService: MonographsService,
-                private http: Http) {
-                    console.log('MonographViewerComponent');
-                }
+                private http: Http) {}
 
     tabSelected(idx:number) {
         this.activeTab = idx;
@@ -205,11 +204,9 @@ export class TopicgraphsViewerComponent implements OnInit, OnDestroy, AfterViewC
 });*/
         var book = encodeURI(JSON.stringify(request));
         var url ='https://api.citation-api.com/rest/widget/site/labs.jstor.org?callback=EBUpdateCitation&cachebuster=' + Date.now() + '&data=' + book;
-        console.log(url);
-        this.http.get(url).subscribe(val => console.log("val", val));
+        // console.log(url);
+        // this.http.get(url).subscribe(val => console.log("val", val));
     }
-
-
 
     ngOnInit() {
 
@@ -232,20 +229,29 @@ export class TopicgraphsViewerComponent implements OnInit, OnDestroy, AfterViewC
                 this.pubYear = monograph.pubYear;
             });
 
-        this.monograph.subscribe(monograph => {
+        this.monograph.subscribe((monograph: IMonograph) => {
             monograph.wordCoords.subscribe(wordCoords => this.wordCoords = wordCoords);
         });
 
-        this.selectedMonographSub = this.store.select(state => state.topicgraphs.docs)
+        /*this.selectedMonographSub = this.store.select(state => state.topicgraphs.docs)
             .filter(monographs => monographs.length > 0)
-            .switchMap(monographs => 
+            .switchMap(monographs =>
                 this.activatedRoute.params.forEach((params: Params) => {
                     this.store.dispatch({type: TOPICGRAPHS_ACTIONS.SET_SELECTED_MONOGRAPH, payload: params['docid']});
                     //this.mode = params['mode'];
                     console.log(params);
                 }
             )
-        ).subscribe();
+        ).subscribe();*/
+
+        this.activatedRoute.params.forEach((params: Params) => {
+            if (params['docid']) {
+                this.monographsService.select(params['docid']).subscribe((results: any) => {
+                    this.store.dispatch({type: TOPICGRAPHS_ACTIONS.MONOGRAPHS_SEARCH_COMPLETE, payload: results});
+                    this.store.dispatch({type: TOPICGRAPHS_ACTIONS.SET_SELECTED_MONOGRAPH, payload: params['docid']});
+                });
+            }
+        });
 
        // this.store.dispatch(this.uiActions.setSelectedChapter(-1));
     }

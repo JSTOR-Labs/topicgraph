@@ -51,11 +51,19 @@ export function topicgraphsReducer (state = initialState, action: Action): Topic
         }
 
         case TOPICGRAPHS_ACTIONS.MONOGRAPHS_SEARCH_COMPLETE: {
-
+            let docids: string[] = [];
+            let aggregated: any[] = [...state.docs];
+            state.docs.forEach(doc => docids.push(doc.id));
+            action.payload.docs.forEach(doc => {
+                if (docids.indexOf(doc.id) < 0) {
+                    aggregated.push(doc);
+                    docids.push(doc.id);
+                }
+            });
             return (<any>Object).assign({},
                     state, { loading: false,
-                             numFound: action.payload.count,
-                             docs: action.payload.docs });
+                             numFound: aggregated.length,
+                             docs: aggregated });
         }
 
         case TOPICGRAPHS_ACTIONS.RESET_MONOGRAPHS_SEARCH: {
