@@ -1,9 +1,19 @@
-<div bsModal #submitModal="bs-modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
+<div bsModal #submitModal="bs-modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="emailAddressSubmission" aria-hidden="true">
+  <div class="modal-dialog modal-md">
     <div class="modal-content">
       <div class="modal-header">
-        <h4>Please enter your email address to be notified when your document is ready.</h4><br/>
-        <input style="width:100%;" [(ngModel)]="notificationEmail" type="text" placeholder="Email address"><br/><br/>
+        <h4>Email and Terms</h4><br/>
+        <input style="width:100%;" [(ngModel)]="notificationEmail" type="text" placeholder="Email address, to be notified when your document is ready"><br/><br/>
+         <div class="row">
+            <div class="col-sm-12">
+                <input type="checkbox" style="position: relative; top: 10px;"  /> I agree that I own the rights to upload this document
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+               <input type="checkbox" style="position: relative; top: 10px; margin-bottom: 5em"  /> I agree to the <a href="https://s3.amazonaws.com/ithaka-labs/static-files/docs/JSTOR+Labs+Topicgraph+Terms+and+Conditions+of+Use.docx" target="_blank">Terms & Conditions</a>
+            </div>
+        </div>
         <button type="button" class="cancel" id="cancel-submit" aria-label="Close" (click)="hide()">
           <span aria-hidden="true">Cancel</span>
         </button>

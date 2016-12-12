@@ -1,27 +1,51 @@
 <topicgraphs-header></topicgraphs-header>
 <div id="main">
-<div id="head-text">
-    <div class="row">
-        <div class="col-xs-10 col-xs-offset-1">
-            <p>Make a topic graph of a document you already have
-            </p>
+    <div id="head-text">
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1">
+                <p>Make a topic graph of a document you already have
+                </p>
 
+            </div>
+            <img src="assets/Upload Step 1.png" style="margin-right: 2.5em">
+                <img src="assets/Upload Step 2.png" style="margin-right: 2.5em">
+                <img src="assets/Upload Step 3.png">
         </div>
-        <img src="assets/Upload Step 1.png" style="margin-right: 2.5em">
-            <img src="assets/Upload Step 2.png" style="margin-right: 2.5em">
-            <img src="assets/Upload Step 3.png">
     </div>
-</div>
 
-<div class="container pdfSubmit">
-
-    <div class="row">
+    <div class="container pdfSubmit">
+        <div class="row">
         <div class="col-sm-12 text-center">
-            <textarea placeholder="Drag PDF here" fileDrop [ngClass]="{'nv-file-over': fileIsOverDropZone}"
-                (fileOver)="fileOverBase($event)" (drop)="fileDrop($event)" rows="10" cols="50"></textarea>
+            <h3 style="margin: 2em">Upload a PDF that you would like to analyze.</h3>
         </div>
     </div>
-</div>
+    <div class="row">
+        <div class="col-sm-12 text-center" style="height: 250px" > <!-- id="upload-container"-->
+            <div class="textarea-styling">
+
+            </div>
+            <div id="drag-instructions">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x" style="color: #546d89;"></i>
+                  <i class="fa fa-paperclip fa-stack-1x fa-inverse fa-rotate-90"></i>
+                </span>
+                Drag and drop a PDF here<br>or<br>
+                <label style="color: #546d89; font-weight: normal; margin-top: .8em">
+                    select files from your computer
+                    <input type="file" style="margin: auto; visibility: hidden; height: 0px;"
+                       ngFileSelect
+                       (onUpload)="handleUpload($event)"
+                       (beforeUpload)="beforeUpload($event)"/>
+                </label>
+            </div>
+            <textarea #queryElem [value]="query | async" (keyup.enter)="submit()"  ng2FileDrop [ngClass]="{'nv-file-over': fileIsOverDropZone}"
+                (fileOver)="fileOverBase($event)" (drop)="fileDrop($event)" rows="10" cols="50"></textarea>
+
+
+        </div>
+    </div>
+
+    </div>
 </div>
 <topicgraphs-footer></topicgraphs-footer>
 <pdf-submit-modal #submitModal (onHide)="doSubmit($event)"></pdf-submit-modal>
