@@ -11,42 +11,58 @@
                 <img src="assets/Upload Step 2.png" style="margin-right: 2.5em">
                 <img src="assets/Upload Step 3.png">
         </div>
-    </div>
-
-    <div class="container pdfSubmit">
-        <div class="row">
-        <div class="col-sm-12 text-center">
-            <h3 style="margin: 2em">Upload a PDF that you would like to analyze.</h3>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-12 text-center" style="height: 250px" > <!-- id="upload-container"-->
-            <div class="textarea-styling">
-
-            </div>
-            <div id="drag-instructions">
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x" style="color: #546d89;"></i>
-                  <i class="fa fa-paperclip fa-stack-1x fa-inverse fa-rotate-90"></i>
-                </span>
-                Drag and drop a PDF here<br>or<br>
-                <label style="color: #546d89; font-weight: normal; margin-top: .8em">
-                    select files from your computer
-                    <input type="file" style="margin: auto; visibility: hidden; height: 0px;"
-                       ngFileSelect
-                       (onUpload)="handleUpload($event)"
-                       (beforeUpload)="beforeUpload($event)"/>
-                </label>
-            </div>
-            <textarea #queryElem [value]="query | async" (keyup.enter)="submit()"  ng2FileDrop [ngClass]="{'nv-file-over': fileIsOverDropZone}"
-                (fileOver)="fileOverBase($event)" (drop)="fileDrop($event)" rows="10" cols="50"></textarea>
-
-
-        </div>
-    </div>
-
+        <img src="assets/Upload Step 1.png" style="margin-right: 2.5em">
+            <img src="assets/Upload Step 2.png" style="margin-right: 2.5em">
+            <img src="assets/Upload Step 3.png">
     </div>
 </div>
 
-<pdf-submit-modal #submitModal (onHide)="doSubmit($event)"></pdf-submit-modal>
+    <div class="container pdfSubmit">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <h3 style="margin: 2em">Upload a PDF that you would like to analyze.</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 text-center" style="height: 250px" > <!-- id="upload-container"-->
+                <div class="textarea-styling">
+
+                </div>
+                <div id="drag-instructions">
+                    <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x" style="color: #546d89;"></i>
+                    <i class="fa fa-paperclip fa-stack-1x fa-inverse fa-rotate-90"></i>
+                    </span>
+                    Drag and drop a PDF here<br>or<br>
+                    <label style="z-index:1000; color: #546d89; font-weight: normal; margin-top: .8em">
+                        select files from your computer
+                        <input type="file" style="margin: auto; visibility: hidden; height: 0px;"
+                            ngFileSelect (onUpload)="handleUpload($event)" (beforeUpload)="beforeUpload($event)"/>
+                    </label>
+                </div>
+                <textarea fileDrop [ngClass]="{'nv-file-over': fileIsOverDropZone}"
+                    (fileOver)="fileOverBase($event)" (drop)="fileDrop($event)" rows="10" cols="50">
+                </textarea>
+            </div>
+
+        </div>
+    <!-- <div class="row">
+            <div class="col-sm-12 col-md-3 col-md-offset-3">
+                Email address?
+            </div>
+        </div>-->
+
+        <div class="row">
+            <div class="col-sm-12 col-med-2 col-md-offset-4">
+                <input type="checkbox" style="position: relative; top: 10px;"  /> I agree that I own the rights to upload this document
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-med-2 col-md-offset-4">
+            <input type="checkbox" style="position: relative; top: 10px; margin-bottom: 5em"  /> I agree to the <a href="#" target="_blank">Terms & Conditions</a>
+            </div>
+        </div>
+    </div>
+</div>
 <topicgraphs-footer></topicgraphs-footer>
+<pdf-submit-modal #submitModal (onHide)="doSubmit($event)"></pdf-submit-modal>

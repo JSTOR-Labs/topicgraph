@@ -246,6 +246,7 @@ export class TopicgraphsViewerComponent implements OnInit, OnDestroy, AfterViewC
 
         this.activatedRoute.params.forEach((params: Params) => {
             if (params['docid']) {
+                this.store.dispatch({type: TOPICGRAPHS_ACTIONS.CLEAR_SELECTED_MONOGRAPH});
                 this.monographsService.select(params['docid']).subscribe((results: any) => {
                     this.store.dispatch({type: TOPICGRAPHS_ACTIONS.MONOGRAPHS_SEARCH_COMPLETE, payload: results});
                     this.store.dispatch({type: TOPICGRAPHS_ACTIONS.SET_SELECTED_MONOGRAPH, payload: params['docid']});

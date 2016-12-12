@@ -65,6 +65,11 @@ export class MonographsService {
         this.store.dispatch({type: TOPICGRAPHS_ACTIONS.SEARCH_MONOGRAPHS});
     }
 
+    /** 
+     * Retrieves monograph metadata and serialized thumbnail images from back-end service.
+     * If a document ID is provided only the metadata for that single document is returned,
+     * otherwise the metadata and thumbnails for all public monographs is returned.
+     */
     select(docid?: string) {
         let url = API_BASE_URL + '/api/monographs/?format=json&level=0&status=complete&fields=' + fields + '&limit=100';
         if (docid) {
@@ -72,7 +77,6 @@ export class MonographsService {
         } else {
             url += '&submitted_by=jstorlabs';
         }
-        // console.log('MonographsService.select', url);
         return this.authService.authenticate()
             .switchMap((session: any) =>
                 this._http.get(url,
@@ -86,6 +90,10 @@ export class MonographsService {
             ;
     }
 
+    /** 
+     * Retrieves topic data for a monograph for use in visualization.  The topic data is generally available at multiple
+     * levels of granularity.  If unspecified the level defaults to level '0', or the most coarse.
+     */
     getVisualizationData(docid: string, segmentLevel?: number) {
         let url = API_BASE_URL + '/api/monographs/?docid=' + docid + '&fields=level,source_docs,fpage,lpage,segment,summary,visdata&sort=segment%20asc&limit=512';
         if (segmentLevel) {
@@ -100,6 +108,10 @@ export class MonographsService {
             );
     }
 
+    /** 
+     * Retrieves the full text for a monograph with corresponding woord coordinates.  This word coordinate text is used
+     * in word highlighting. 
+     */
     getWordCoords(docid: string) {
         let url = API_BASE_URL + '/api/monographs/?id=' + docid + '&fields=coord_ocr';
         return this.authService.authenticate()
@@ -111,6 +123,9 @@ export class MonographsService {
             );
     }
 
+    /** 
+     * Retrieves the words associated with a specified topic. 
+     */
     getTopicWords(topic: string) {
         let url = API_BASE_URL + '/api/monographs/?id=' + topic + '&fields=data';
         return this.authService.authenticate()

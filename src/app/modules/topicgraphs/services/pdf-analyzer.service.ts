@@ -9,6 +9,10 @@ export class PdfAnalyzerService {
     constructor(private _http: Http,
                 private authService: LabsAuthService) {}
 
+    /** 
+     * Submit a PDF for off-line analysis.  An email notification is generated when the document
+     * processing is complete. 
+     */
     submit(dataUrl: string, notificationEmail: string) {
         if (dataUrl.slice(0, 28) === 'data:application/pdf;base64,') {
             return this.authService.authenticate()
