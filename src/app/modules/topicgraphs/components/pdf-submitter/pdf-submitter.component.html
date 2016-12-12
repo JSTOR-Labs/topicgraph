@@ -18,12 +18,12 @@
             <div class="col-sm-12 text-center">
                 <h3 *ngIf="status === 'INITIAL'" class="status initial">Upload a PDF that you would like to analyze.</h3>
                 <h3 *ngIf="status === 'UPLOADING'" class="status uploading"><i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i>Uploading document...</h3>
-                <h3 *ngIf="status === 'SUCCESS'" class="status success">Upload succeeded.  An email will be sent when the document is ready</h3>
-                <h3 *ngIf="status === 'FAILURE'" class="status cailure">Upload failed.</h3>
+                <h3 *ngIf="status === 'SUCCESS'" class="status" style="font-weight: bold">Success! Your document has been uploaded.</h3>
+                <h3 *ngIf="status === 'FAILURE'" class="status failure">Upload failed, sorry. Please try again or contact <a href="mailto:labs@ithaka.org">labs@ithaka.org</a>.</h3>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-12 text-center" style="height: 250px" > <!-- id="upload-container"-->
+        <div class="row" >
+            <div class="col-sm-12 text-center" style="height: 250px"  *ngIf="status === 'INITIAL'"> <!-- id="upload-container"-->
                 <div class="textarea-styling">
 
                 </div>
@@ -44,6 +44,17 @@
                 </textarea>
             </div>
 
+            <div class="col-sm-12 text-center"  style="height: 220px; margin-top: -60px" *ngIf="status === 'SUCCESS'">
+               <p style="position: static; font-size: 1.2em">Our analysis engine is now chugging along applying our custom topic model to it.<br>
+                We'll email you in 15 - 20 minutes when it's done.</p>
+                <p style="position:static; margin-top: 2em">
+                    <span style="font-weight: bold">In the meantime, you can:</span><br>
+                <a [routerLink]="['/submit']">Make another topic graph</a><br>
+                    <a [routerLink]="['/about']">Read about our topic model</a><br>
+                    <a [routerLink]="['/']">Browse topic models already made</a>
+                </p>
+
+            </div>
         </div>
     <!-- <div class="row">
             <div class="col-sm-12 col-md-3 col-md-offset-3">
