@@ -33,15 +33,16 @@
                     <i class="fa fa-paperclip fa-stack-1x fa-inverse fa-rotate-90"></i>
                     </span>
                     Drag and drop a PDF here<br>or<br>
-                    <label style="z-index:1000; color: #546d89; font-weight: normal; margin-top: .8em">
+
+                </div>
+                <textarea fileDrop [ngClass]="{'nv-file-over': fileIsOverDropZone}"
+                    (fileOver)="fileOverBase($event)" (drop)="fileDrop($event)" rows="10" cols="50">
+                </textarea><br>
+                <label style="z-index:1000; color: #546d89; font-weight: normal; margin-top: .8em; position: relative; bottom: 360px; cursor: pointer; cursor: hand">
                         select files from your computer
                         <input type="file" style="margin: auto; visibility: hidden; height: 0px;"
                             ngFileSelect (onUpload)="handleUpload($event)" (beforeUpload)="beforeUpload($event)"/>
                     </label>
-                </div>
-                <textarea fileDrop [ngClass]="{'nv-file-over': fileIsOverDropZone}"
-                    (fileOver)="fileOverBase($event)" (drop)="fileDrop($event)" rows="10" cols="50">
-                </textarea>
             </div>
 
             <div class="col-sm-12 text-center"  style="height: 220px; margin-top: -60px" *ngIf="status === 'SUCCESS'">
