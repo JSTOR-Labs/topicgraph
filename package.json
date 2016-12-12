@@ -71,7 +71,7 @@
     "build:aot:dev": "npm run clean:dist && npm run sass && webpack",
     "build:dev": "npm run clean:dist && npm run sass && webpack",
     "build:dll": "npm run clean:dll && npm run sass && webpack",
-    "build:ghpages": "npm run build:aot:prod && rsync -a dist/client/ docs",
+    "build:ghpages": "npm run compile:aot && rsync -a dist/client/ docs",
     "build:prod": "npm run clean:dist && npm run sass && webpack",
     "build:prod:e2e": "npm run clean:dist && npm run sass && webpack",
     "build:universal": "npm run build:universal:prod",
