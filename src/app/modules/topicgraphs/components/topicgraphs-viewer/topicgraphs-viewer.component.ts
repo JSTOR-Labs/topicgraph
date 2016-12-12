@@ -177,7 +177,7 @@ export class TopicgraphsViewerComponent implements OnInit, OnDestroy, AfterViewC
 
 
     copyCitation(format:string) {
-        var request = {
+        let request = {
             'raw': 'true',
             'source': 'book',
             'style': format,
@@ -202,8 +202,8 @@ export class TopicgraphsViewerComponent implements OnInit, OnDestroy, AfterViewC
   "text/plain": "Markup text. Paste me into a rich text editor.",
   "text/html": "<i>Markup</i> <b>text</b>. Paste me into a rich text editor."
 });*/
-        var book = encodeURI(JSON.stringify(request));
-        var url ='https://api.citation-api.com/rest/widget/site/labs.jstor.org?callback=EBUpdateCitation&cachebuster=' + Date.now() + '&data=' + book;
+        let book = encodeURI(JSON.stringify(request));
+        let url = 'https://api.citation-api.com/rest/widget/site/labs.jstor.org?callback=EBUpdateCitation&cachebuster=' + Date.now() + '&data=' + book;
         // console.log(url);
         // this.http.get(url).subscribe(val => console.log("val", val));
     }

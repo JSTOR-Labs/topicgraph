@@ -12,6 +12,7 @@ export class PdfSubmitterComponent implements OnDestroy {
     @ViewChild('submitModal') submitModal: any;
     dataUrl: any;
     submitSub: any;
+    status = 'INITIAL';
 
     constructor(public router: Router,
                 private pdfAnalyzerService: PdfAnalyzerService) {}
@@ -60,11 +61,16 @@ export class PdfSubmitterComponent implements OnDestroy {
     }
 
     public doSubmit(notificationEmail: any) {
+        console.log('PdfSubmitterComponent.doSubmit', notificationEmail);
+        this.submitModal.hide();
+        this.status = 'UPLOADING';
         this.submitSub = this.pdfAnalyzerService
             .submit(this.dataUrl, notificationEmail)
+            .catch(error => this.status = 'FAILURE')
             .subscribe(resp => {
-                this.submitModal.hide();
-                this.router.navigate(['/']);
+                this.status = 'SUCCESS';
+                // this.submitModal.hide();
+                // this.router.navigate(['/']);
             });
     }
 

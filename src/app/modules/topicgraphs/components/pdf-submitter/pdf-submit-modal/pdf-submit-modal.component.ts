@@ -11,6 +11,8 @@ export class PdfSubmitModalComponent implements OnInit {
     @ViewChild('submitModal') submitModal: any;
     @Output('onHide') onHide = new EventEmitter();
     notificationEmail: string;
+    rightsAgree: boolean = false;
+    tcAgree: boolean = false;
 
     show() {
         this.submitModal.config.backdrop = false;

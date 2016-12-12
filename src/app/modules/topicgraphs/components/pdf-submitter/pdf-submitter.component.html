@@ -16,7 +16,10 @@
     <div class="container pdfSubmit">
         <div class="row">
             <div class="col-sm-12 text-center">
-                <h3 style="margin: 2em">Upload a PDF that you would like to analyze.</h3>
+                <h3 *ngIf="status === 'INITIAL'" class="status initial">Upload a PDF that you would like to analyze.</h3>
+                <h3 *ngIf="status === 'UPLOADING'" class="status uploading"><i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i>Uploading document...</h3>
+                <h3 *ngIf="status === 'SUCCESS'" class="status success">Upload succeeded.  An email will be sent when the document is ready</h3>
+                <h3 *ngIf="status === 'FAILURE'" class="status cailure">Upload failed.</h3>
             </div>
         </div>
         <div class="row">
