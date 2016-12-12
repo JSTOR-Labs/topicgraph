@@ -68,6 +68,13 @@ export class PdfSubmitterComponent implements OnDestroy {
             });
     }
 
+    handleUpload(event: any) {
+        console.log('handleUpload', event);
+    }
+    beforeUpload(event: any) {
+        console.log('handleUpload', event);
+    }
+
     ngOnDestroy() {
         if (this.submitSub) this.submitSub.unsubscribe();
     }

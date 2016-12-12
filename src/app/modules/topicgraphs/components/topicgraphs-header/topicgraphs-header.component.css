@@ -28,7 +28,7 @@ i {
   float: right;
   display: inline-block;
   margin-top: 1em;
-}
+  width: 650px; }
 
 #top-links a {
   margin-left: 1.5em; }
