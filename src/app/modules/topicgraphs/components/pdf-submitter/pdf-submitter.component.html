@@ -41,7 +41,7 @@
                 <label style="z-index:1000; color: #546d89; font-weight: normal; margin-top: .8em; position: relative; bottom: 360px; cursor: pointer; cursor: hand">
                         select files from your computer
                         <input type="file" style="margin: auto; visibility: hidden; height: 0px;"
-                            ngFileSelect (onUpload)="handleUpload($event)" (beforeUpload)="beforeUpload($event)"/>
+                            (change)="fileSelected($event)"/>
                     </label>
             </div>
 
