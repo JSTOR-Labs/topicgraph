@@ -50,7 +50,7 @@
                 We'll email you in 15 - 20 minutes when it's done.</p>
                 <p style="position:static; margin-top: 2em">
                     <span style="font-weight: bold">In the meantime, you can:</span><br>
-                <a [routerLink]="['/submit']">Make another topic graph</a><br>
+                    <a (click)="restart()" style="cursor:pointer; cursor: hand">Make another topic graph</a><br>
                     <a [routerLink]="['/about']">Read about our topic model</a><br>
                     <a [routerLink]="['/']">Browse topic models already made</a>
                 </p>

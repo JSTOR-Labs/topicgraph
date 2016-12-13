@@ -74,6 +74,10 @@ export class PdfSubmitterComponent implements OnDestroy {
             });
     }
 
+    public restart(event:any) {
+        this.status = 'INITIAL';
+    }
+
     handleUpload(event: any) {
         console.log('handleUpload', event);
     }
