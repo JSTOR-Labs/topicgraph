@@ -61,7 +61,6 @@ export class PdfSubmitterComponent implements OnDestroy {
     }
 
     public doSubmit(notificationEmail: any) {
-        console.log('PdfSubmitterComponent.doSubmit', notificationEmail);
         this.submitModal.hide();
         this.status = 'UPLOADING';
         this.submitSub = this.pdfAnalyzerService
@@ -74,15 +73,17 @@ export class PdfSubmitterComponent implements OnDestroy {
             });
     }
 
-    public restart(event:any) {
+      public restart(event:any) {
         this.status = 'INITIAL';
     }
-
-    handleUpload(event: any) {
-        console.log('handleUpload', event);
-    }
-    beforeUpload(event: any) {
-        console.log('handleUpload', event);
+    
+    fileSelected(event: any) {
+        if (event.target.files.length > 0 && event.target.files[0].type === 'application/pdf') {
+            this.fileToPromise(event.target.files[0]).then((dataUrl: string) => {
+                this.dataUrl = dataUrl;
+                this.submitModal.show();
+            });
+        }
     }
 
     ngOnDestroy() {
