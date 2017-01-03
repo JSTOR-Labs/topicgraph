@@ -8,14 +8,10 @@
 
         <div class="row">
             <div class="col-sm-12">
-               <input type="checkbox" [(ngModel)]="tcAgree" required style="position: relative; top: 10px; margin-bottom: 2em"  /> I agree to the <a href="https://s3.amazonaws.com/ithaka-labs/static-files/docs/JSTOR+Labs+Topicgraph+Terms+and+Conditions+of+Use.pdf" target="_blank">Terms & Conditions</a>
+               <input type="checkbox" [(ngModel)]="tcAgree" required style="position: relative; top: 10px; margin-bottom: 2em"  /> I agree to the <a href="https://s3.amazonaws.com/ithaka-labs/static-files/docs/JSTOR+Labs+Topicgraph+Terms+and+Conditions+of+Use.pdf" target="_blank">Terms & Conditions</a> and <a href="http://about.jstor.org/privacy" target="_blank">Privacy Policy</a>
             </div>
         </div>
-           <div class="row" style="position: relative; bottom: 20px">
-            <div class="col-sm-12">
-                <a href="http://about.jstor.org/privacy" target="_blank">Privacy Policy</a>
-            </div>
-        </div>
+
         <button type="button" class="cancel" id="cancel-submit" aria-label="Close" (click)="hide()">
           <span aria-hidden="true">Cancel</span>
         </button>&nbsp;&nbsp;
