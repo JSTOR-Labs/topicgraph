@@ -95,7 +95,7 @@ class Monograph implements IMonograph {
     }
 }
 
-export function monographsSearchResultsToDocs(monographsService: MonographsService, searchResults: any[]): IMonograph[] {
+export function monographsSearchResultsToDocs(monographsService: MonographsService, searchResults: any[], token: string): IMonograph[] {
     let monographs: IMonograph[] = [];
     for (let i = 0; i < searchResults.length; i++) {
         let resultsDoc: any = searchResults[i];
@@ -114,7 +114,7 @@ export function monographsSearchResultsToDocs(monographsService: MonographsServi
         doc.submittedBy = resultsDoc.submitted_by;
         doc.numPages = +resultsDoc.num_pages;
         doc.pubYear = +resultsDoc.published_date;
-        doc.pdf = 'https://labs.jstor.org/api/monographs/'+doc.id+'.pdf/';
+        doc.pdf = 'https://labs.jstor.org/api/monographs/'+doc.id+'.pdf/?jwt='+token;
 
         doc.author = [];
         doc.author_string = '';

@@ -77,14 +77,16 @@ export class MonographsService {
         } else {
             url += '&submitted_by=jstorlabs';
         }
+        let jwtToken = null;
         return this.authService.authenticate()
-            .switchMap((session: any) =>
-                this._http.get(url,
-                               { headers: new Headers({ 'Authorization': 'JWT ' + session.token })})
-            )
+            .switchMap((session: any) => {
+                jwtToken = session.token;
+                return this._http.get(url,
+                       { headers: new Headers({ 'Authorization': 'JWT ' + session.token })});
+            })
             .map((response: any) => {
                 let results = response.json();
-                results.docs = monographsSearchResultsToDocs(this, results.docs);
+                results.docs = monographsSearchResultsToDocs(this, results.docs, jwtToken);
                 return results;
             })
             ;
