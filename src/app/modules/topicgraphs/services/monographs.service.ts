@@ -77,14 +77,16 @@ export class MonographsService {
         } else {
             url += '&submitted_by=jstorlabs';
         }
+        let jwtToken = null;
         return this.authService.authenticate()
-            .switchMap((session: any) =>
-                this._http.get(url,
-                               { headers: new Headers({ 'Authorization': 'JWT ' + session.token })})
-            )
+            .switchMap((session: any) => {
+                jwtToken = session.token;
+                return this._http.get(url,
+                       { headers: new Headers({ 'Authorization': 'JWT ' + session.token })});
+            })
             .map((response: any) => {
                 let results = response.json();
-                results.docs = monographsSearchResultsToDocs(this, results.docs);
+                results.docs = monographsSearchResultsToDocs(this, results.docs, jwtToken);
                 return results;
             })
             ;
@@ -95,7 +97,7 @@ export class MonographsService {
      * levels of granularity.  If unspecified the level defaults to level '0', or the most coarse.
      */
     getVisualizationData(docid: string, segmentLevel?: number) {
-        let url = API_BASE_URL + '/api/monographs/?docid=' + docid + '&fields=level,source_docs,fpage,lpage,segment,summary,visdata&sort=segment%20asc&limit=512';
+        let url = API_BASE_URL + '/api/monographs/?format=json&docid=' + docid + '&fields=level,source_docs,fpage,lpage,segment,summary,visdata&sort=segment%20asc&limit=512';
         if (segmentLevel) {
             url += '&level=(0 OR ' + segmentLevel + ')';
         }
@@ -113,7 +115,7 @@ export class MonographsService {
      * in word highlighting. 
      */
     getWordCoords(docid: string) {
-        let url = API_BASE_URL + '/api/monographs/?id=' + docid + '&fields=coord_ocr';
+        let url = API_BASE_URL + '/api/monographs/?format=json&id=' + docid + '&fields=coord_ocr';
         return this.authService.authenticate()
             .switchMap((session: any) =>
                 this._http.get(url,
@@ -127,7 +129,7 @@ export class MonographsService {
      * Retrieves the words associated with a specified topic. 
      */
     getTopicWords(topic: string) {
-        let url = API_BASE_URL + '/api/monographs/?id=' + topic + '&fields=data';
+        let url = API_BASE_URL + '/api/monographs/?format=json&id=' + topic + '&fields=data';
         return this.authService.authenticate()
             .switchMap((session: any) =>
                 this._http.get(url,
