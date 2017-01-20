@@ -38,9 +38,9 @@
                 <textarea fileDrop [ngClass]="{'nv-file-over': fileIsOverDropZone}"
                     (fileOver)="fileOverBase($event)" (drop)="fileDrop($event)" rows="10" cols="50">
                 </textarea><br>
-                <label style="z-index:1000; color: #546d89; font-weight: normal; margin-top: .8em; position: relative; bottom: 360px; cursor: pointer; cursor: hand">
+                <label id="topicgraph-upload-link" style="z-index:1000; color: #546d89; font-weight: normal; margin-top: .8em; position: relative; bottom: 360px; cursor: pointer; cursor: hand">
                         select files from your computer
-                        <input type="file" style="margin: auto; visibility: hidden; height: 0px;"
+                        <input id = "topicgra-upload-input" type="file" style="margin: auto; visibility: hidden; height: 0px;"
                             (change)="fileSelected($event)"/>
                     </label>
             </div>
