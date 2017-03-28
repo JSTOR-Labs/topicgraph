@@ -46,6 +46,7 @@
     "clean:compile": "npm run rimraf -- \"src/compiled\" ",
     "compile": "npm run compile:aot",
     "compile:aot": "npm run sass && npm run clean:compile && npm run ngc && npm run build:aot",
+    "compile:aot:analyze": "npm run sass && npm run clean:compile && npm run ngc && webpack",
     "compile:e2e": "npm run sass && npm run clean:compile && npm run ngc && npm run build:aot:prod:e2e",
     "compile:universal": "npm run sass && npm run clean:compile && npm run ngc:universal && npm run build:universal:aot",
     "compile:universal:e2e": "npm run sass && npm run clean:compile && npm run ngc:universal && npm run build:universal:aot:prod:e2e",

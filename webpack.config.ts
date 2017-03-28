@@ -42,6 +42,7 @@ const E2E = EVENT.includes('e2e');
 const HMR = hasProcessFlag('hot');
 const PROD = EVENT.includes('prod');
 const UNIVERSAL = EVENT.includes('universal');
+const ANALYZE = EVENT.includes('analyze');
 
 let port: number;
 if (!UNIVERSAL) {
@@ -231,6 +232,11 @@ const commonConfig = function webpackConfig(): WebpackConfig {
       new BundleAnalyzerPlugin({analyzerPort: 5000})
     );
   }*/
+  if (ANALYZE) {
+      config.plugins.push(
+        new BundleAnalyzerPlugin({analyzerPort: 5000})
+      );
+  }
 
   return config;
 } ();
