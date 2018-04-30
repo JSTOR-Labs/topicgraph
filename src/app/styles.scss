@@ -95,13 +95,16 @@ a:hover {
 .text-red {
   color: #cd151e; }
 
+.gdpr-banner {
+  margin-to: 60px;
+}
 /************* START MAIN **************/
 #main {
   /* width: calc(100% - 270px); */
   width: 100%;
   height: 100%;
   float: right;
-  margin-top: 58px;
+ /* margin-top: 58px;*/
   padding: 0;
   box-sizing: border-box;
   background-color: #fff; }
